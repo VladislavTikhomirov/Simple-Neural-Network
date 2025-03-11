@@ -123,7 +123,7 @@ def gradient_descent(X, Y, alpha, iterations):
     return W1, b1, W2, b2, W3, b3
 
 # Train the model
-# W1, b1, W2, b2, W3, b3 = gradient_descent(X_train, Y_train, 0.10, 1000)
+W1, b1, W2, b2, W3, b3 = gradient_descent(X_train, Y_train, 0.10, 1000)
 
 # Function to make predictions
 def make_predictions(X, W1, b1, W2, b2, W3, b3):
@@ -143,19 +143,19 @@ def test_prediction(index, W1, b1, W2, b2, W3, b3):
     plt.title(f"Prediction: {prediction[0]}, True Value: {label} (I AM TRAIN DATA!)")
     plt.show()
 
-# # Check accuracy on the development set
-# dev_predictions = make_predictions(X_dev, W1, b1, W2, b2, W3, b3)
-# print("Development set accuracy:", get_accuracy(dev_predictions, Y_dev))
+# Check accuracy on the development set
+dev_predictions = make_predictions(X_dev, W1, b1, W2, b2, W3, b3)
+print("Development set accuracy:", get_accuracy(dev_predictions, Y_dev))
 
 
-# # Load and preprocess test data
-# test_data = np.array(test_data)
-# m_test, n_test = test_data.shape
+# Load and preprocess test data
+test_data = np.array(test_data)
+m_test, n_test = test_data.shape
 
-# # Separate test data into labels and inputs
-# Y_test = test_data[:, 0]  # First column is the label
-# X_test = test_data[:, 1:n_test]  # Remaining columns are the input features
-# X_test = X_test.T / 255.  # Normalize and transpose
+# Separate test data into labels and inputs
+Y_test = test_data[:, 0]  # First column is the label
+X_test = test_data[:, 1:n_test]  # Remaining columns are the input features
+X_test = X_test.T / 255.  # Normalize and transpose
 
 # Function to display and compare test images with predictions
 def display_test_predictions(index, W1, b1, W2, b2, W3, b3, X_test, Y_test):
@@ -187,21 +187,21 @@ def display_test_results():
     test_accuracy = get_accuracy(test_predictions, Y_test)
     print("Test set accuracy:", test_accuracy)
 
-# display_test_results()
+display_test_results()
 
-# image_folder = 'utils/'
-# def test_image_results(W1, b1, W2, b2, W3, b3):
-#     img_data = ['utils/' + file for file in os.listdir(image_folder) if file.endswith('.png')]
-#     random_choice = randint(0, len(img_data)-1)
-#     cur_image = img_data[random_choice]
-#     prediction = make_predictions(cur_image, W1, b1, W2, b2, W3, b3)
-#     cur_image = cur_image.reshape((28, 28)) * 255
-#     plt.gray()
-#     plt.imshow(cur_image, interpolation='nearest')
-#     plt.title(f"Prediction: {prediction[0]}, True Value: {cur_image}")
-#     plt.show()
+image_folder = 'utils/'
+def test_image_results(W1, b1, W2, b2, W3, b3):
+    img_data = ['utils/' + file for file in os.listdir(image_folder) if file.endswith('.png')]
+    random_choice = randint(0, len(img_data)-1)
+    cur_image = img_data[random_choice]
+    prediction = make_predictions(cur_image, W1, b1, W2, b2, W3, b3)
+    cur_image = cur_image.reshape((28, 28)) * 255
+    plt.gray()
+    plt.imshow(cur_image, interpolation='nearest')
+    plt.title(f"Prediction: {prediction[0]}, True Value: {cur_image}")
+    plt.show()
 
-# test_image_results(W1,b1,W2,b2,W3,b3)
+test_image_results(W1,b1,W2,b2,W3,b3)
 
 
 
